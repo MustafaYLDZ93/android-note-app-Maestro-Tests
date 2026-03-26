@@ -1,0 +1,54 @@
+appId: com.noteapp.notes
+name: "Not Silme"
+---
+- launchApp
+
+# Test notu oluştur
+- tapOn:
+    id: "fab"
+- tapOn:
+    id: "etTitle"
+- inputText: "Silinecek Not"
+- tapOn:
+    id: "etContent"
+- inputText: "Bu not silinecek"
+- tapOn:
+    id: "fabSave"
+
+# Not listede görünüyor mu?
+- assertVisible:
+    text: "Silinecek Not"
+
+# 3-nokta menüsünü aç
+- tapOn:
+    id: "btnMore"
+    index: 0
+
+# Sil seçeneğine tıkla
+- tapOn:
+    text: "Sil"
+
+# Onay dialogu çıktı mı?
+- assertVisible:
+    text: "Notu Sil"
+- assertVisible:
+    text: "Silinecek Not"
+
+# İptal et — not hala durmalı
+- tapOn:
+    text: "İptal"
+- assertVisible:
+    text: "Silinecek Not"
+
+# Tekrar sil ve onayla
+- tapOn:
+    id: "btnMore"
+    index: 0
+- tapOn:
+    text: "Sil"
+- tapOn:
+    text: "Sil"
+
+# Not artık listede olmamalı
+- assertNotVisible:
+    text: "Silinecek Not"

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Not Defteri</string>
+    <string name="subtitle_notes">Notlarım</string>
+
+    <string name="hint_search">Not ara…</string>
+    <string name="hint_note_title">Başlık</string>
+    <string name="hint_note_content">Notunuzu buraya yazın…</string>
+
+    <string name="label_note_date">Not Tarihi</string>
+    <string name="label_color">Renk</string>
+    <string name="select_date">Tarih Seç</string>
+
+    <string name="add_note">Yeni Not Ekle</string>
+    <string name="save_note">Notu Kaydet</string>
+    <string name="edit_note">Düzenle</string>
+    <string name="delete_note">Sil</string>
+    <string name="pin_note">Sabitle</string>
+    <string name="unpin_note">Sabitlemeyi Kaldır</string>
+    <string name="more_options">Daha fazla seçenek</string>
+
+    <string name="note_detail_title">Not Detayı</string>
+    <string name="new_note_title">Yeni Not</string>
+    <string name="edit_note_title">Notu Düzenle</string>
+
+    <string name="empty_notes">Henüz not yok</string>
+    <string name="empty_notes_hint">Yeni not eklemek için + butonuna dokun</string>
+
+    <string name="created_at">Oluşturulma: %s</string>
+    <string name="last_updated_at">Son güncelleme: %s</string>
+    <string name="updated_at">Güncellendi: %s</string>
+
+    <string name="note_saved">Not kaydedildi</string>
+    <string name="note_updated">Not güncellendi</string>
+    <string name="note_deleted">Not silindi</string>
+    <string name="note_pinned">Not sabitlendi</string>
+    <string name="note_unpinned">Sabitleme kaldırıldı</string>
+
+    <string name="error_title_required">Başlık boş bırakılamaz</string>
+
+    <string name="delete_confirm_title">Notu Sil</string>
+    <string name="delete_confirm_message">"%s" notunu silmek istediğinizden emin misiniz?</string>
+    <string name="unsaved_changes_title">Kaydedilmemiş Değişiklikler</string>
+    <string name="unsaved_changes_message">Değişiklikleriniz kaydedilmedi. Ne yapmak istersiniz?</string>
+
+    <string name="sort_by">Sırala</string>
+    <string name="sort_date_desc">Tarih: Yeni → Eski</string>
+    <string name="sort_date_asc">Tarih: Eski → Yeni</string>
+    <string name="sort_title_asc">Başlık: A → Z</string>
+    <string name="sort_title_desc">Başlık: Z → A</string>
+
+    <string name="save">Kaydet</string>
+    <string name="discard">Vazgeç</string>
+    <string name="cancel">İptal</string>
+    <string name="delete">Sil</string>
+</resources>

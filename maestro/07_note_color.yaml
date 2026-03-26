@@ -1,0 +1,55 @@
+appId: com.noteapp.notes
+name: "Not Rengi Seçme"
+---
+- launchApp
+
+# Yeni not oluştur
+- tapOn:
+    id: "fab"
+
+# Renk seçici görünüyor mu?
+- assertVisible:
+    id: "colorPickerRow"
+
+# Başlık gir
+- tapOn:
+    id: "etTitle"
+- inputText: "Renkli Not"
+
+# İkinci renk dairesine tıkla (sarı)
+- tapOn:
+    id: "colorPickerRow"
+
+# İçerik gir
+- tapOn:
+    id: "etContent"
+- inputText: "Bu notun sari bir arka plani var"
+
+# Kaydet
+- tapOn:
+    id: "fabSave"
+
+# Not listede görünüyor mu?
+- assertVisible:
+    text: "Renkli Not"
+
+# Notu düzenleme modunda aç
+- tapOn:
+    id: "btnMore"
+    index: 0
+- tapOn:
+    text: "Düzenle"
+
+# Renk seçici edit modda görünmeli
+- assertVisible:
+    id: "colorPickerRow"
+
+# Farklı renk seç ve kaydet
+- tapOn:
+    id: "colorPickerRow"
+- tapOn:
+    id: "fabSave"
+
+# Listede hala görünüyor mu?
+- assertVisible:
+    text: "Renkli Not"

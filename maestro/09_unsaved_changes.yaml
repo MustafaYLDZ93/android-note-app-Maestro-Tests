@@ -1,0 +1,63 @@
+appId: com.noteapp.notes
+name: "Kaydedilmemiş Değişiklik Uyarısı"
+---
+- launchApp
+
+# Test notu oluştur
+- tapOn:
+    id: "fab"
+- tapOn:
+    id: "etTitle"
+- inputText: "Degistirilecek Not"
+- tapOn:
+    id: "fabSave"
+
+# Düzenleme modunda aç
+- tapOn:
+    id: "btnMore"
+    index: 0
+- tapOn:
+    text: "Düzenle"
+
+# Değişiklik yap ama kaydetme
+- tapOn:
+    id: "etContent"
+- inputText: "Kaydedilmeyecek icerik"
+
+# Geri tuşuna bas
+- pressKey: Back
+
+# Uyarı dialogu çıkmalı
+- assertVisible:
+    text: "Kaydedilmemiş Değişiklikler"
+
+# Vazgeç seçeneği — değişiklikler kaybolmalı
+- tapOn:
+    text: "Vazgeç"
+
+# Ana ekranda not orijinal halinde görünmeli
+- assertVisible:
+    text: "Degistirilecek Not"
+
+# Tekrar düzenle ve bu sefer kaydet
+- tapOn:
+    id: "btnMore"
+    index: 0
+- tapOn:
+    text: "Düzenle"
+- tapOn:
+    id: "etContent"
+- inputText: "Kaydedilecek icerik"
+- pressKey: Back
+
+# Dialog tekrar çıkmalı
+- assertVisible:
+    text: "Kaydedilmemiş Değişiklikler"
+
+# Bu sefer Kaydet'e bas
+- tapOn:
+    text: "Kaydet"
+
+# Not güncellendi mesajı
+- assertVisible:
+    text: "Not güncellendi"

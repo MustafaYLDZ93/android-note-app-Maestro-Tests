@@ -1,0 +1,34 @@
+appId: com.noteapp.notes
+name: "Form Doğrulama"
+---
+- launchApp
+
+# Boş başlıkla kaydetmeye çalış
+- tapOn:
+    id: "fab"
+
+# İçerik doldur ama başlık bırakma
+- tapOn:
+    id: "etContent"
+- inputText: "Basliksiz icerik"
+
+# Kaydetmeye çalış
+- tapOn:
+    id: "fabSave"
+
+# Hata mesajı görünmeli
+- assertVisible:
+    text: "Başlık boş bırakılamaz"
+
+# Başlık girince hata gitmeli
+- tapOn:
+    id: "etTitle"
+- inputText: "Baslik eklendi"
+- tapOn:
+    id: "fabSave"
+
+# Başarıyla kaydedildi
+- assertVisible:
+    text: "Not kaydedildi"
+- assertVisible:
+    text: "Baslik eklendi"

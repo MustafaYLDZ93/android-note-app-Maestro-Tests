@@ -1,0 +1,73 @@
+appId: com.noteapp.notes
+name: "Not Arama"
+---
+- launchApp
+
+# İki ayrı not oluştur
+- tapOn:
+    id: "fab"
+- tapOn:
+    id: "etTitle"
+- inputText: "Android Gelistirme"
+- tapOn:
+      id: "etContent"
+- inputText: "Kotlin ve Java notlari"
+- tapOn:
+    id: "fabSave"
+
+- tapOn:
+    id: "fab"
+- tapOn:
+    id: "etTitle"
+- inputText: "Alisveris Listesi"
+- tapOn:
+      id: "etContent"
+- inputText: "Sut, ekmek, yumurta"
+- tapOn:
+    id: "fabSave"
+
+# İki not da görünüyor mu?
+- assertVisible:
+    text: "Android Gelistirme"
+- assertVisible:
+    text: "Alisveris Listesi"
+
+# Arama kutusuna tıkla ve ara
+- tapOn:
+    id: "etSearch"
+- inputText: "Android"
+
+# Sadece Android notu görünmeli
+- assertVisible:
+    text: "Android Gelistirme"
+- assertNotVisible:
+    text: "Alisveris Listesi"
+
+# İçerikle ara
+- eraseText: 100
+- tapOn:
+    id: "etSearch"
+- inputText: "ekmek"
+
+- assertVisible:
+    text: "Alisveris Listesi"
+- assertNotVisible:
+    text: "Android Gelistirme"
+
+# Aramayı temizle — tüm notlar görünmeli
+- eraseText: 100
+- tapOn:
+    id: "etSearch"
+- assertVisible:
+    text: "Android Gelistirme"
+- assertVisible:
+    text: "Alisveris Listesi"
+
+# Olmayan bir şey ara — boş durum göstermeli
+- tapOn:
+    id: "etSearch"
+- inputText: "xyzabc123"
+- assertNotVisible:
+    text: "Android Gelistirme"
+- assertNotVisible:
+    text: "Alisveris Listesi"

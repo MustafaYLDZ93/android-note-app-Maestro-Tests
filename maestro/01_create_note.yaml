@@ -1,0 +1,49 @@
+appId: com.noteapp.notes
+name: "Not Oluşturma"
+---
+# Uygulamayı başlat
+- launchApp
+
+# Ana ekranın yüklendiğini doğrula
+- assertVisible:
+    text: "Not Defteri"
+
+# Yeni not ekle butonuna tıkla
+- tapOn:
+    id: "fab"
+
+# Not detay ekranının açıldığını doğrula
+- assertVisible:
+    text: "Yeni Not"
+
+# Başlık gir
+- tapOn:
+    id: "etTitle"
+- inputText: "Test Notu"
+
+# Tarih seç
+- tapOn:
+    id: "btnSelectDate"
+- assertVisible:
+    text: "Tarih Seç"
+- tapOn:
+    text: "OK"
+
+# İçerik gir
+- tapOn:
+    id: "etContent"
+- inputText: "Bu bir Maestro test notudur."
+
+# Sarı renk seç (ikinci renk dairesi)
+- tapOn:
+    id: "colorPickerRow"
+
+# Kaydet
+- tapOn:
+    id: "fabSave"
+
+# Ana ekrana döndüğünde not görünüyor mu?
+- assertVisible:
+    text: "Test Notu"
+- assertVisible:
+    text: "Bu bir Maestro test notudur."

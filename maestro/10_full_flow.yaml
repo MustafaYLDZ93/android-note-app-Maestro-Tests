@@ -1,0 +1,123 @@
+appId: com.noteapp.notes
+name: "Uçtan Uca Tam Akış"
+---
+- launchApp
+
+# 1. Boş durum ekranı görünmeli
+- assertVisible:
+    text: "Henüz not yok"
+- assertVisible:
+    text: "Not Defteri"
+
+# 2. İlk notu oluştur (renkli + tarihli)
+- tapOn:
+    id: "fab"
+- assertVisible:
+    text: "Yeni Not"
+- tapOn:
+    id: "etTitle"
+- inputText: "Proje Plani"
+- tapOn:
+    text: "Notunuzu buraya yazın..."
+- inputText: "Sprint 1 gorevleri: UI tasarimi, API entegrasyonu"
+- tapOn:
+    id: "fabSave"
+- assertVisible:
+    text: "Not kaydedildi"
+
+# 3. İkinci not oluştur
+- tapOn:
+    id: "fab"
+- tapOn:
+    id: "etTitle"
+- inputText: "Alisveris Listesi"
+- tapOn:
+    text: "Notunuzu buraya yazın..."
+- inputText: "Ekmek, sut, yumurta, peynir"
+- tapOn:
+    id: "fabSave"
+
+# 4. Üçüncü not oluştur
+- tapOn:
+    id: "fab"
+- tapOn:
+    id: "etTitle"
+- inputText: "Onemli Toplanti"
+- tapOn:
+    text: "Notunuzu buraya yazın..."
+- inputText: "Pazartesi saat 10:00, Zoom linki gonderilecek"
+- tapOn:
+    id: "fabSave"
+
+# 5. Üç not listede görünüyor
+- assertVisible:
+    text: "Proje Plani"
+- assertVisible:
+    text: "Alisveris Listesi"
+- assertVisible:
+    text: "Önemli Toplanti"
+
+# 6. Önemli notu sabitle
+- tapOn:
+    id: "btnMore"
+    index: 0
+- tapOn:
+    text: "Sabitle"
+- assertVisible:
+    text: "Not sabitlendi"
+
+# 7. Ara — "toplantı" ile filtrele
+- tapOn:
+    id: "etSearch"
+- inputText: "toplanti"
+- assertVisible:
+    text: "Önemli Toplanti"
+- assertNotVisible:
+    text: "Proje Plani"
+
+# 8. Aramayı temizle
+- eraseText: 100
+- tapOn:
+    id: "etSearch"
+
+# 9. Başlığa göre sırala
+- tapOn:
+    id: "action_sort"
+- tapOn:
+    text: "Başlık: A → Z"
+
+# 10. Proje planını düzenle
+- tapOn:
+    id: "btnMore"
+    index: 1
+- tapOn:
+    text: "Düzenle"
+- eraseText: 100
+- tapOn:
+    id: "etContent"
+- inputText: "Sprint 1 tamamlandi, Sprint 2 basliyor"
+- tapOn:
+    id: "fabSave"
+- assertVisible:
+    text: "Not güncellendi"
+
+# 11. Alisveris listesini sil
+- tapOn:
+    id: "btnMore"
+    index: 0
+- tapOn:
+    text: "Sil"
+- assertVisible:
+    text: "Notu Sil"
+- tapOn:
+    text: "Sil"
+- assertVisible:
+    text: "Not silindi"
+- assertNotVisible:
+    text: "Alisveris Listesi"
+
+# 12. Son kontrol — 2 not kaldı
+- assertVisible:
+    text: "Proje Plani"
+- assertVisible:
+    text: "Önemli Toplanti"

@@ -1,0 +1,63 @@
+appId: com.noteapp.notes
+name: "Not Düzenleme"
+---
+- launchApp
+
+# Önce test notu oluştur
+- tapOn:
+    id: "fab"
+- tapOn:
+    id: "etTitle"
+- inputText: "Duzenlenecek Not"
+
+# İçerik alanına hint text ile tıkla
+- tapOn:
+    id: "etContent"
+- inputText: "Orijinal icerik"
+
+- tapOn:
+    id: "fabSave"
+
+# Ekran geçişini bekle
+- waitForAnimationToEnd
+
+# Not listede görünüyor mu?
+- assertVisible:
+    text: "Duzenlenecek Not"
+
+# 3-nokta menüsünü aç
+- tapOn:
+    id: "btnMore"
+    index: 0
+
+# Düzenle seçeneğine tıkla
+- tapOn:
+    text: "Düzenle"
+- waitForAnimationToEnd
+
+# Düzenleme ekranında olduğumuzu doğrula
+- assertVisible:
+    text: "Notu Düzenle"
+
+# Başlığı değiştir
+- tapOn:
+    id: "etTitle"
+- eraseText: 100
+- inputText: "Guncellenmis Not"
+
+# İçeriği değiştir
+- tapOn:
+    text: "Orijinal icerik"
+- eraseText: 100
+- inputText: "Guncellenmis icerik"
+
+# Kaydet
+- tapOn:
+    id: "fabSave"
+- waitForAnimationToEnd
+
+# Güncel başlık listede görünüyor mu?
+- assertVisible:
+    text: "Guncellenmis Not"
+- assertNotVisible:
+    text: "Duzenlenecek Not"

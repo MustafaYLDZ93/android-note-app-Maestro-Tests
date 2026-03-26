@@ -1,0 +1,51 @@
+appId: com.noteapp.notes
+name: "Not Sabitleme"
+---
+- launchApp
+
+# İki not oluştur
+- tapOn:
+    id: "fab"
+- tapOn:
+    id: "etTitle"
+- inputText: "Normal Not"
+- tapOn:
+    id: "fabSave"
+
+- tapOn:
+    id: "fab"
+- tapOn:
+    id: "etTitle"
+- inputText: "Sabitlenecek Not"
+- tapOn:
+    id: "fabSave"
+
+# İkinci notu sabitle (3-nokta menüsü)
+- tapOn:
+    id: "btnMore"
+    index: 0
+- tapOn:
+    text: "Sabitle"
+
+# "Not sabitlendi" mesajı görünmeli
+- assertVisible:
+    text: "Not sabitlendi"
+
+# Sabitlenmiş not listenin başına geçmeli
+- assertVisible:
+    id: "ivPin"
+
+# Sabitlemeyi kaldır
+- tapOn:
+    id: "btnMore"
+    index: 0
+- tapOn:
+    text: "Sabitlemeyi Kaldır"
+
+# "Sabitleme kaldırıldı" mesajı görünmeli
+- assertVisible:
+    text: "Sabitleme kaldırıldı"
+
+# Pin ikonu artık görünmemeli
+- assertNotVisible:
+    id: "ivPin"
