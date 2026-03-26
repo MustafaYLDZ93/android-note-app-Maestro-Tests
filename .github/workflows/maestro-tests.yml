@@ -9,7 +9,7 @@ on:
 
 jobs:
   maestro-tests:
-    runs-on: macos-latest
+    runs-on: [self-hosted, macOS, x64]
     timeout-minutes: 60
 
     steps:
