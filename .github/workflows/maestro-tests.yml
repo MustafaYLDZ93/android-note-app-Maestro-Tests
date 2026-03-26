@@ -1,11 +1,25 @@
 name: Maestro E2E Tests
 
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
   workflow_dispatch:
+    inputs:
+      test_file:
+        description: 'Test dosyası seç'
+        required: true
+        default: 'all'
+        type: choice
+        options:
+          - all
+          - 01_create_note.yaml
+          - 02_edit_note.yaml
+          - 03_delete_note.yaml
+          - 04_search_note.yaml
+          - 05_pin_note.yaml
+          - 06_sort_notes.yaml
+          - 07_note_color.yaml
+          - 08_validation.yaml
+          - 09_unsaved_changes.yaml
+          - 10_full_flow.yaml
 
 jobs:
   maestro-tests:
@@ -55,7 +69,11 @@ jobs:
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           script: |
             adb install -r app/build/outputs/apk/debug/app-debug.apk
-            $HOME/.maestro/bin/maestro test maestro/ --format junit --output maestro-results.xml
+            if [ "${{ github.event.inputs.test_file }}" = "all" ]; then
+              $HOME/.maestro/bin/maestro test maestro/ --format junit --output maestro-results.xml
+            else
+              $HOME/.maestro/bin/maestro test maestro/${{ github.event.inputs.test_file }} --format junit --output maestro-results.xml
+            fi
 
       - name: Upload test results
         uses: actions/upload-artifact@v4
