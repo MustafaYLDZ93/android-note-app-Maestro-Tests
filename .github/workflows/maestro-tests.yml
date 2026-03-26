@@ -9,8 +9,8 @@ on:
 
 jobs:
   maestro-tests:
-    runs-on: ubuntu-latest
-    timeout-minutes: 30
+    runs-on: macos-latest
+    timeout-minutes: 60
 
     steps:
       - name: Checkout
@@ -40,10 +40,30 @@ jobs:
           curl -Ls "https://get.maestro.mobile.dev" | bash
           echo "$HOME/.maestro/bin" >> $GITHUB_PATH
 
-      - name: Run Maestro Cloud Tests
-        run: |
-          maestro cloud \
-            --apiKey ${{ secrets.MAESTRO_API_KEY }} \
-            --device-locale tr_TR \
-            app/build/outputs/apk/debug/app-debug.apk \
-            maestro/
+      - name: Run Maestro Tests on Emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 34
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          disable-animations: true
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: |
+            adb install -r app/build/outputs/apk/debug/app-debug.apk
+            $HOME/.maestro/bin/maestro test maestro/ --format junit --output maestro-results.xml
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: maestro-test-results
+          path: maestro-results.xml
+          retention-days: 30
+
+      - name: Publish JUnit report
+        uses: mikepenz/action-junit-report@v4
+        if: always()
+        with:
+          report_paths: maestro-results.xml
+          check_name: Maestro Test Results
