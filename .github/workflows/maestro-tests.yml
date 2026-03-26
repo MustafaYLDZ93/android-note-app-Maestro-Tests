@@ -29,7 +29,6 @@ jobs:
     env:
       ANDROID_HOME: /Users/musti/Library/Android/sdk
       ANDROID_SDK_ROOT: /Users/musti/Library/Android/sdk
-      PATH: /Users/musti/Library/Android/sdk/platform-tools:/Users/musti/Library/Android/sdk/emulator:/Users/musti/.maestro/bin:$PATH
 
     steps:
       - name: Checkout
