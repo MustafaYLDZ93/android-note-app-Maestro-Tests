@@ -34,6 +34,9 @@ name: "Not Oluşturma"
     id: "etContent"
 - inputText: "Bu bir Maestro test notudur."
 
+# Klavyeyi kapat
+- hideKeyboard
+
 # Sarı renk seç (ikinci renk dairesi)
 - tapOn:
     id: "colorPickerRow"
